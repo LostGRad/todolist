@@ -1,0 +1,79 @@
+<ng-template [ngTemplateOutlet]="loadTemplate(listItems.length)">
+</ng-template>
+<ng-template #readOnlyTemplate>
+<mat-drawer-container  [hasBackdrop]="side">
+      <mat-drawer #drawer class="drawer">
+          <mat-toolbar>
+              <span>Добавить новую задачу</span>
+          </mat-toolbar>
+          <mat-form-field class="example-full-width">
+              <input #inp matInput placeholder="Задача" (keyup)='enablebutton($event)'>
+        </mat-form-field>
+          <button #btnadd  mat-raised-button color="primary" (click)='add(inp.value)' [disabled]="!isValid" >Добавить</button>
+      </mat-drawer>
+      <mat-drawer-content class="fullscreen">
+
+        <button mat-raised-button color="primary" (click)='drawer.toggle()'>Добавить</button>
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="listItems" class="table">
+
+                    <!-- id Column -->
+                    <ng-container matColumnDef="id">
+                          <th mat-header-cell *matHeaderCellDef> No. </th>
+                          <td mat-cell *matCellDef="let element">
+                             {{element.id}}
+                          </td>
+                    </ng-container>
+
+                    <!-- text Column -->
+                    <ng-container matColumnDef="text">
+                          <th mat-header-cell *matHeaderCellDef> Text </th>
+                          <td mat-cell *matCellDef="let element" >
+                              <div>
+                                  {{element.text}}
+                                      <button mat-icon-button color="primary" class="only-show-on-hover" (click)="editOfElement(element)">
+                                          <mat-icon><i class="fas fa-pen-fancy"></i></mat-icon>
+                                    </button>
+                              </div>
+                               </td>
+                    </ng-container>
+
+                    <!-- createDatet Column -->
+                    <ng-container matColumnDef="createDate">
+                          <th mat-header-cell *matHeaderCellDef> Create Date </th>
+                          <td mat-cell *matCellDef="let element"> {{element.createDate}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="button">
+                           <th mat-header-cell *matHeaderCellDef> Del </th>
+                           <td mat-cell *matCellDef="let element">
+                               <button mat-icon-button color="warn" (click)="delElement(element)">
+                                   <mat-icon><i class="fas fa-trash-alt"></i></mat-icon>
+                               </button>
+                           </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+        </div>
+  <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+        </mat-drawer-content>
+  </mat-drawer-container>
+</ng-template>
+<ng-template #editTemplate>
+    <span>В базе нет задач!</span>
+    <mat-drawer-container [hasBackdrop]="side">
+          <mat-drawer #drawer class="drawer">
+              <mat-toolbar>
+                  <span>Добавить новую задачу</span>
+              </mat-toolbar>
+              <mat-form-field class="example-full-width">
+                  <input #inp matInput placeholder="Задача" (keyup)='enablebutton($event)'>
+            </mat-form-field>
+              <button #btnadd  mat-raised-button color="primary" (click)='add(inp.value)' [disabled]="!isValid" >Добавить</button>
+          </mat-drawer>
+          <mat-drawer-content class="fullscreen">
+
+            <button mat-raised-button color="primary" (click)='drawer.toggle()'>Добавить</button>
+        </mat-drawer-content>
+  </mat-drawer-container>
+</ng-template>

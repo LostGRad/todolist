@@ -1,0 +1,39 @@
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+tr:hover
+{
+    background: #fbf8e9;
+    transition: all 0.1s ease-in-out;
+}
+.section
+{
+    width: 30%;
+}
+.fullscreen
+{
+    height: 700px;
+}
+.drawer
+{
+    width: 30%;
+}
+.example-full-width
+{
+    padding-right: 50px;
+}
+div  .only-show-on-hover {
+    visibility: hidden;
+}
+td:hover .only-show-on-hover  {
+    visibility: visible;
+}

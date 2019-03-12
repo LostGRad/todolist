@@ -1,0 +1,10 @@
+<div mat-dialog-content align="center">
+  <p>Редактирование задачи</p>
+  <mat-form-field>
+    <input #inpEdit  matInput [(ngModel)]="value">
+  </mat-form-field>
+</div>
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="getValue(inpEdit.value)">Сохранить</button>
+    <button mat-raised-button mat-dialog-close>Отмена</button>
+</mat-dialog-actions>
